@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/css/asheuh-framework.css" type="text/css">
+        <link rel="shortcut icon" href="static/images/H-logo.ico">
+        <link rel="stylesheet" href="static/css/style.css" type="text/css">
+        <script src="static/js/app.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Stackoverflow | Lite</title>
+
+</head>
+<body>
+    <header class="header">
+        <nav class="myNavbar">
+            <div>
+                <ul class="myNav">
+                    <div class="my-container">
+                        <li>
+                            <a style="font-size: 22px; color: gold;" href="home.html"><span class="smallerFont">Stackoverflow</span>LITE<sup><small>2018</small></sup></a>
+                        </li>
+                        <li class="right">
+                            <a href="signin.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/logout-rounded-filled.png">
+                            </a>
+                        </li>
+                        <li class="right">
+                            <a href="userprofile.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/asheuh.jpeg">
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div include-html="menu.html"></div>
+    <script>
+        includeHTML();
+    </script>
+<!-- The form -->
+<div class="content grid-3">
+    <div class="span-col-2">
+        <h1>Recent Questions</h1>
+        <div class="search">
+<form class="example" method="POST">
+    {% csrf_token %}
+    <input class="animated" type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+
+</form>
+</div>
+</div>
+</div>
+<table>
+  <tr>
+    <td>
+    {% for item in all_questions %}
+      {{ item }}<br/>
+    {% endfor %}
+    </td>
+    <td>
+      {% for item in output %}
+      <a href="{{ item.qurl }}" target="_blank">{{ item.qtitle }}</a><br/>
+      {% endfor %}
+    </td>
+  </tr>
+</table>
+</body>
+</html>
