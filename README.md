@@ -96,10 +96,14 @@ pip3 install -r requirements.txt
 >>> nltk.download('punkt')
 ```
 
+### Initialize the database
+```bash
+python3 manage.py migrate
+```
 ### Running the web app :
 
 ```bash
-python3 manage.py runserver # The web app can be run in http://127.0.0.1:8000
+ python3 manage.py runserver # The web app can be run in http://127.0.0.1:8000
 ```
 
 
