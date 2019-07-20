@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="shortcut icon" href="static/images/H-logo.ico">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
+    <script src="static/js/app.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="static/css/asheuh-framework.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Stackoverflow | Lite</title>
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="myNavbar">
+            <div>
+                <ul class="myNav">
+                    <div class="my-container">
+                        <li>
+                            <a style="font-size: 22px; color: gold;" href="/"><span class="smallerFont">Stackoverflow</span>LITE<sup><small>2018</small></sup></a>
+                        </li>
+                        <li class="right">
+                            <a href="/signin.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/logout-rounded-filled.png">
+                            </a>
+                        </li>
+                        <li class="right">
+                            <a href="/userprofile.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/asheuh.jpeg">
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% include 'menu.html' %}
+    <div class="content grid-2">
+        <div class="span-col-2">
+            <h1 style="font-family: 'Times New Roman', Times, serif">Search Here</h1>
+            <div class="search">
+                <form class="example" method="POST">
+                    {% csrf_token %}
+                    <input class="animated" type="text" placeholder="Search.." name="search">
+                    <br />
+                    <button type="button submit" class="btn btn-outline-success fa fa-search">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    {% if show is True %}
+        <h2 style="font-family: 'Times New Roman', Times, serif">Query - {{ sentence }}</h2>
+        
+    <div class="row">
+    <div class="col-sm-6" style="border:1px solid #cecece;">
+            {% if show is True %}
+                <h2 style="font-family: 'Times New Roman', Times, serif">Questions using API</h2>
+            {% endif %}
+            <br/>
+            {% for item in all_questions %}
+            <hr style="border-width: 3px">
+                <a href="{{ item.qurl }}" target="_blank" style="font-family:courier,arial,helvetica;font-size:20px">
+                    {{ item.qtitle }}
+                </a>
+            <br/><br/> 
+            {% endfor %}
+    </div>
+    <div class="col-sm-6" style="border:1px solid #cecece;">
+            {% if show is True %}
+                <h2 style="font-family: 'Times New Roman', Times, serif">Questions using USE</h2>
+            {% endif %}
+            <br/>
+                {% for item in output %} 
+                    <hr style="border-width: 3px">
+                    <a href="{{ item.qurl }}" style="font-family:courier,arial,helvetica;font-size:20px" target="_blank">{{ item.qtitle }}</a>
+                    <ul>
+                        {% for ans_id in item.aid %}
+                        <li>
+                            {% if ans_id.sentiment == 'positive' %}
+                            <p style="font-family: 'Palatino', Times, serif; font-size: 16px ">Answer Id and Link -
+                                <a href="https://www.stackoverflow.com/q/{{ ans_id.aid }}" target="_blank" style="font-family:courier,arial,helvetica;font-size:20px;color: green">
+                                    {{ ans_id.aid }}
+                                </a>
+                            </p>
+                            {% endif %}
+
+                            {% if ans_id.sentiment == 'neutral' %}
+                            <p style="font-family: 'Palatino', Times, serif; font-size: 16px ">Answer Id and Link -
+                                <a href="https://www.stackoverflow.com/q/{{ ans_id.aid }}" target="_blank" style="font-family:courier,arial,helvetica;font-size:20px;color: purple">
+                                    {{ ans_id.aid }}
+                                </a>
+                            </p>
+                            {% endif %}
+
+                            {% if ans_id.sentiment == 'negative' %}
+                            <p style="font-family: 'Palatino', Times, serif; font-size: 16px ">Answer Id and Link -
+                                <a href="https://www.stackoverflow.com/q/{{ ans_id.aid }}" target="_blank" style="font-family:courier,arial,helvetica;font-size:20px;color: red">
+                                    {{ ans_id.aid }}
+                                </a>
+                            </p>
+                            {% endif %}
+                            <p style="font-family: 'Palatino', Times, serif; font-size: 20px ">Sentiment: <u>{{ ans_id.senti_score }}</u> &emsp; Upvotes: <u>{{ ans_id.upvote }}</u> 
+                                &emsp; Score: <u>{{ ans_id.score }}</u>
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <br/>
+                {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+</body>
+
+</html>

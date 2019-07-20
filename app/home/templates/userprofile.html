@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../static/css/asheuh-framework.css" type="text/css">
+    <link rel="shortcut icon" href="../../static/images/H-logo.ico">
+    <link rel="stylesheet" href="../../static/css/style.css" type="text/css">
+    <script src="../../static/js/app.js"></script>
+    <title>Stackoverflow | Lite</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="myNavbar">
+            <div>
+                <ul class="myNav">
+                    <div class="my-container">
+                        <li>
+                            <a style="font-size: 22px; color: gold;" href="/"><span class="smallerFont">Stackoverflow</span>LITE<sup><small>2018</small></sup></a>
+                        </li>
+                        <li class="right">
+                            <a href="/signin.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/logout-rounded-filled.png">
+                            </a>
+                        </li>
+                        <li class="right">
+                            <a href="/userprofile.html">
+                                <img class="image" style="border-radius: 50%; width: 30px; height: 30px;" src="../../static/images/asheuh.jpeg">
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% include 'menu.html' %}
+    <div class="content">
+        <div class="asheuh-container">
+            <div class="my-container-fluid">
+                <div>
+                    <div class="grid-6">
+                        <div>
+                            <img style="width: 200px; border-radius: 12em;" src="../../static/images/dmr.jpg">
+                        </div>
+                        <div class="span-col-5">
+                            <h1 style="margin-top: 1em">Dennis Ritchie(DMR)</h1>
+                            <p><small><i>Bronxville, New York, U.S.</i></small></p>
+                            <p>Phone: <i>+(1) XXX XXX XXXX</i></p> 
+                            <div class="social-icons">
+                                <a href="#"><i style="color:blue;" class="me fab fa-facebook-square"></i></a>
+                                <a href="#"><i style="color:#ffc838" class="me fab fa-instagram"></i></a>
+                                <a href="#"><i style="color:#3498DB;" class="me fab fa-twitter-square"></i></a>
+                                <a href="#"><i style="color:#21618C;" class="me fab fa-linkedin-in"></i></a>
+                                <a href="#"><i style="color:red;" class="me fab fa-google-plus-square"></i></a>
+                                <a href="#"><i style="color:black;" class="me fab fa-github-square"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-details">
+                        <div class="grid-4">
+                            <div>
+                                <h4>Organization: <i>Harvard University</i></h4>
+                                <h4>Email: <i>dmr@c++.com</i></h4>
+                                <h4>Interesting thing about me: <i>I love to code in python.</i></h4>
+                                <h4>Gender: <i> Male</i></h4>
+                                <h4>Birthday: <i>September 9, 1941</i></h4>
+                            </div>
+                            <div class="card" style="padding: 10px; text-align:center;">
+                                <h3><i class="fas fa-chart-bar"></i> Statistics</h3>
+                                <hr>
+                                <div class="grid-4">
+                                    <div id="a">
+                                        <h4>All</h4>
+                                        <h3><a href="#">1,002,400</a></h3>
+                                    </div>
+                                    <div class="a">
+                                        <h4>Questions</h4>
+                                        <h3><a href="#">1,200</a></h3>
+                                    </div>
+                                    <div class="a">
+                                        <h4>Answers</h4>
+                                        <h3><a href="#">1,200</a></h3>
+                                    </div>
+                                    <div class="a">
+                                        <h4>Votes</h4>
+                                        <h3><a href="#">1,000,000</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-5">
+                        <div class="span-col-4 Bio">
+                            <div class="bio">
+                                <h3>My Recent Questions</h3>
+                                <div class="search">
+                                </div>
+                                <hr>
+                                <div class="quiz">
+                                    <ul class="qa">
+                                        <p class="asheuh">Asked 20mins ago by Brian Mboya</p>
+                                        <li class="dropdown-btn">
+                                            <a href="#">Jquery search working on my desktop device and also on chrome mobile emulator but not working in real device</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="quiz">
+                                    <ul class="qa">
+                                        <p class="asheuh">Asked 20mins ago by Brian Mboya</p>
+                                        <li class="dropdown-btn">
+                                            <a href="#">Django: Image is stored twice</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="quiz">
+                                    <ul class="qa">
+                                        <p class="asheuh">Asked 20mins ago by Brian Mboya</p>
+                                        <li class="dropdown-btn">
+                                            <a href="#">Restoring deleted files and folders in linux</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p><i>Github rating</i></p>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <p><i>C++ rating</i></p>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

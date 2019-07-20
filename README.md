@@ -2,13 +2,31 @@
 
 ## User Query on Stack Overflow
 
+Stack Overflow is a question and answer site for professional and enthusiast programmers.
+It's built and run by the community of developer, as part of the
+Stack Exchange network of Q&A sites. A lot of content is present in form of stack overflow
+questions and answers, various studies point that developers face problems while
+development life cycles and they ask questions on stack overflow which gets answered by
+fellow developers across the globe.
+In order for a new developer to understand a concept or solve an issue, it is very difficult to
+identify the problems. It involves domain experts in form of experienced software
+developers. The information present is overwhelming and at times can be too much to
+handle for a budding developer.
+
 # Goals
 
-- 
+- To identify most relevant questions to a query [text similarity]
+- Identify the matching tags and pick top relevant questions from stack overflow.
+- To identify top k solutions of the problem.
+  - (sentiment analysis of review content)
 
 # Features
 
-- 
+- Huge set of questions from API
+- Further filtering of Questions using Universal Sentence Encoder
+- This app also provides **Links for top answers**. 
+- For top-k answers app displays **sentiments score and upvotes** along with the ans link
+- Colouring is also done based on sentiments on how reliable the answer is based on the feedback of each answer.
 
 ## Getting Started
 
@@ -44,6 +62,20 @@ Things you need to install the software and instructions to install them:
 - Getting our web app up and running is simple. 
 - To run it you have to do what you do with most flask apps.
 
+### Setting up the Github repository
+
+```
+git clone https://github.com/yudhik11/StackOverflow_UserQuery
+```
+
+### Additional Files to be downloaded [Pre-trained models]
+
+```
+wget ....
+```
+
+
+
 ### Setting up virtual environment:
 
 ```bash
@@ -52,7 +84,16 @@ source name_of_your_environment/bin/activate
 pip3 install -r requirements.txt
 ```
 
+### Some NLTK packages from python3 interpreter
+
+```python
+>>> import nltk
+>>> nltk.download('stopwords')
+>>> nltk.download('punkt')
+```
+
 ### Running the web app :
+
 ```bash
 python3 manage.py runserver # The web app can be run in http://127.0.0.1:8000
 ```
