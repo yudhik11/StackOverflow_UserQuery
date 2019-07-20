@@ -70,11 +70,15 @@ git clone https://github.com/yudhik11/StackOverflow_UserQuery
 
 ### Additional Files to be downloaded [Pre-trained models]
 
-```
-wget ....
-```
+
+- Download the utils folder from this [link](https://drive.google.com/file/d/1ESW6s3n58zo6kizs7OS_aMwpEUB-Ekq8/view?usp=sharing)
+
+- Download the tf folder from this [link](https://drive.google.com/file/d/1v8CnvqLt6kruzYBF7kl0pwc-qJ-2vqEk/view?usp=sharing)
 
 
+- Unzip the files:
+  - place the **utils** folder to app/
+  - **tf** folder to app/home/   
 
 ### Setting up virtual environment:
 

@@ -3,6 +3,7 @@ import json,sys
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
+import torch
 import ast
 import random
 import requests
@@ -164,7 +165,7 @@ class Predict(object):
         tag_sim_ques = self.simi_ques.tags(sentence)
         sim_ques = self.top_ques.predict(sentence, tag_sim_ques)
         _,  ques_ans = self.ans_class.ans(sim_ques)
-        ques_ans = ques_ans[:5]
+        # ques_ans = ques_ans[:5]
         ques_ans_comment = self.comm_class.commentsAnalysis(ques_ans)
         
         def cmp(upvote, score):
