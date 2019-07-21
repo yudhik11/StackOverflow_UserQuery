@@ -9,6 +9,7 @@ import random
 import requests
 import collections
 import re
+import os
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions
 from .similar_ques import *
@@ -28,16 +29,11 @@ class ExtractQuery(object):
 
     def predict(self, sentence, data):
 
-        # with open(path, 'r') as f:
-        #     data = json.load(f)
-
         self.ans = []
         self.ques = []
-        # module_url = "https://tfhub.dev/google/universal-sentence-encoder/2"
         sent = []
         for line in data:
             sent.append(line['question'].strip())
-            # self.ans.append(self.embed_fn([line['question'].strip()])[0])
             self.ques.append( (line['question'], line['qid'], line['qurl']) )
         self.ans = self.embed_fn(sent)
         self.ans=np.array(self.ans)
@@ -85,9 +81,11 @@ class ExtractAnswer:
         u='https://api.stackexchange.com/2.2/questions/'+self.final_ids+'/answers'
         start = True
         i = 1
+        stackoverflow_key = os.environ['STACK_API_KEY']
+
         while start:
             print("Ans:",i)
-            p={'page':str(i), 'pagesize':'100','fromdate':'1388534400','order':'desc','sort':'votes','site':'stackoverflow','key':'hWdB8OaWM0hGZP3sRV18iA(('}
+            p={'page':str(i), 'pagesize':'100','fromdate':'1388534400','order':'desc','sort':'votes','site':'stackoverflow','key':stackoverflow_key}
             r = requests.get(url = u, params = p)
             data = r.json()
             temp = data['items']
@@ -107,7 +105,8 @@ class ExtractComments:
         self.ans_id = []
         self.comment_body = []
         self.score_arr = []
-        self.natural_language_understanding = NaturalLanguageUnderstandingV1(version='2019-07-12',iam_apikey='4pVB2V6iRJsLdJMTOuMc4ylEog_ZRe_wfopWf9-tdqc2',url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api')
+        iam_key = os.environ['IBM_WATSON_KEY']
+        self.natural_language_understanding = NaturalLanguageUnderstandingV1(version='2019-07-12',iam_apikey=iam_key,url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api')
         
 
     def commentsAnalysis(self, op):
@@ -126,9 +125,11 @@ class ExtractComments:
                 u='https://api.stackexchange.com/2.2/answers/'+str(ans[0])+'/comments'
                 start = True
                 i = 1
+                stackoverflow_key = os.environ['STACK_API_KEY']
                 while start:
                     print("Comm:", i)
-                    p={'page':str(i), 'pagesize':'100','order':'desc','sort':'votes','site':'stackoverflow','key':'hWdB8OaWM0hGZP3sRV18iA((', 'filter':'!-*jbN.o5AChs'}
+                    
+                    p={'page':str(i), 'pagesize':'100','order':'desc','sort':'votes','site':'stackoverflow','key':stackoverflow_key, 'filter':'!-*jbN.o5AChs'}
                     r = requests.get(url = u, params = p)
                     data = r.json()
                     temp = data['items']

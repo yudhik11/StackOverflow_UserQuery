@@ -5,15 +5,6 @@ import json
 import requests
 import re
 import warnings; warnings.simplefilter('ignore')
-# from sklearn.utils import shuffle
-# from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-# from sklearn.model_selection import train_test_split
-# from sklearn.utils.class_weight import compute_sample_weight
-# from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
-# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-# from sklearn.multiclass import OneVsRestClassifier
-# from sklearn.naive_bayes import GaussianNB
-# import gensim
 import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -54,7 +45,7 @@ def extractKeywords(query):
     uniqueWords = []
     for i in filtered_sentence:
         if not i in uniqueWords:
-            uniqueWords.append(i);
+            uniqueWords.append(i)
     print("Filter:", uniqueWords)
 
     # Keyword Extraction
@@ -123,9 +114,10 @@ class SimilarQuestion:
         tag_arr=[]
         start = True
         i = 1
+        stackoverflow_key = os.environ['STACK_API_KEY']
         while start:
             print(i)
-            p={'page':str(i), 'pagesize':'100','fromdate':'1388534400','tagged':final,'title':self.query, 'order':'desc','sort':'votes','min':'40','site':'stackoverflow','key':'hWdB8OaWM0hGZP3sRV18iA(('}
+            p={'page':str(i), 'pagesize':'100','fromdate':'1388534400','tagged':final,'title':self.query, 'order':'desc','sort':'votes','min':'40','site':'stackoverflow','key':stackoverflow_key}
             r = requests.get(url = u, params = p)
             data = r.json()
             temp = data['items']

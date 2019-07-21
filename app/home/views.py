@@ -34,6 +34,10 @@ def home(request):
                         sentiment = 'neutral'
                     else:
                         sentiment = 'negative'
+                    if np.isnan(ans_score['sentimental_score']):
+                        ans_score['sentimental_score'] = 0.0
+                    if np.isnan(ans_score['score']):
+                        ans_score['score'] = 0.0
                     ans.append({
                         'aid':str(ans_score['aid']),
                         'senti_score':str(ans_score['sentimental_score'])[:6],
@@ -50,6 +54,7 @@ def home(request):
             'show' : True,
             'sentence' : sentence
         }
+        print("="*25,"Done Fetching","="*25)
         return render(request, 'main.html', temp)
     else:        
         return render(request, 'main.html')

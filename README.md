@@ -88,6 +88,14 @@ source name_of_your_environment/bin/activate
 pip3 install -r requirements.txt
 ```
 
+### Setting API Keys
+* You need API keys to access stackoverflow APIs and an IBM Watson Sentiment Analyser key.
+* Set the environment variables for the corresponding keys  
+```bash
+export IBM_WATSON_KEY=<your_ibm_watson_api_key>
+export STACK_API_KEY=<your_stackoverflow_api_key>
+```
+
 ### Some NLTK packages from python3 interpreter
 
 ```python
