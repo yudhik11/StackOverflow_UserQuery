@@ -170,10 +170,13 @@ class Predict(object):
         ques_ans_comment = self.comm_class.commentsAnalysis(ques_ans)
         
         def cmp(upvote, score):
+            if np.isnan(score):
+                score=0.0  
             return (np.tanh(upvote / 1e4) * np.exp(5 * score))
 
         for key in ques_ans_comment:
             ques_ans_comment[key].sort(key=lambda x: cmp(x['upvotes'], x['sentimental_score']), reverse=True)
+            print(ques_ans_comment[key])
             ques_ans_comment[key] = ques_ans_comment[key][:5]
             for i in range(len(ques_ans_comment[key])):
                 ques_ans_comment[key][i]['score'] = cmp(ques_ans_comment[key][i]['upvotes'], ques_ans_comment[key][i]['sentimental_score'])

@@ -34,16 +34,18 @@ def home(request):
                         sentiment = 'neutral'
                     else:
                         sentiment = 'negative'
-                    if np.isnan(ans_score['sentimental_score']):
-                        ans_score['sentimental_score'] = 0.0
-                    if np.isnan(ans_score['score']):
-                        ans_score['score'] = 0.0
+                    sentimental_sc = ans_score['sentimental_score']
+                    sc = ans_score['score']
+                    if np.isnan(sentimental_sc):
+                        sentimental_sc = 0.0
+                    sentimental_sc = "{:.5f}".format(sentimental_sc)
+                    sc = "{:.5f}".format(sc)
                     ans.append({
                         'aid':str(ans_score['aid']),
-                        'senti_score':str(ans_score['sentimental_score'])[:6],
+                        'senti_score':str(sentimental_sc),
                         'upvote':str(ans_score['upvotes']),
                         'sentiment':sentiment,
-                        'score':str(ans_score['score'])[:6]
+                        'score':str(sc)
                     })
             except:
                 pass
